@@ -1,5 +1,5 @@
 <?php
-
+//TEST GIT
 /**
  * Class Repartition
  *
@@ -57,7 +57,7 @@ class Repartition
 	private $_averageDebt = 0;
 
     /**
-     * Default contstructor
+     * Default constructor
      *
      * @param   array       $flatmates
      * @throws  Exception
@@ -74,7 +74,7 @@ class Repartition
 		 */
 		$this->_flatmates 		= $flatmates;
 		$this->_globalDebt 		= $this->calculateGlobalDebt();
-		$this->_flatmatesNumber = $this->calculateFlatmatesNumber();
+		$this->_flatmatesNumber 	= $this->calculateFlatmatesNumber();
 		$this->_averageDebt		= $this->calculateAverageDebt();
 	}
 
@@ -139,7 +139,8 @@ class Repartition
 
 		foreach ($this->_creditors as $key => $creditor) {
 		
-			$debtCalculation = $creditor['averageGap'] - abs($this->_debtors[$debtorPosition]['averageGap']);
+			$debtCalculation =
+                $creditor['averageGap'] - abs($this->_debtors[$debtorPosition]['averageGap']);
 
 			if ($debtCalculation > 0) {
 
@@ -148,7 +149,8 @@ class Repartition
 					'amount'	=> abs($this->_debtors[$debtorPosition]['averageGap'])
 				];
 
-				$this->_creditors[$key]['averageGap'] = $creditor['averageGap'] - abs($this->_debtors[$debtorPosition]['averageGap']);
+				$this->_creditors[$key]['averageGap'] =
+                    $creditor['averageGap'] - abs($this->_debtors[$debtorPosition]['averageGap']);
 
 				unset($this->_debtors[$debtorPosition]);
 
@@ -162,7 +164,8 @@ class Repartition
 					'amount'	=> $creditor['averageGap']
 				];
 
-				$this->_debtors[$debtorPosition]['averageGap'] = $creditor['averageGap'] - abs($this->_debtors[$debtorPosition]['averageGap']);
+				$this->_debtors[$debtorPosition]['averageGap'] =
+                    $creditor['averageGap'] - abs($this->_debtors[$debtorPosition]['averageGap']);
 
 				unset($this->_creditors[$key]);
 
@@ -201,13 +204,11 @@ class Repartition
 		foreach ($this->_flatmates as $flatmate) {
 
 			if ($flatmate['averageGap'] < 0) {
-
 				$debtors[] = $flatmate;
 			}
 		}
 
 		usort($debtors, function($a, $b) {
-
 			return $b['averageGap'] - $a['averageGap'];
 		});
 
@@ -226,13 +227,11 @@ class Repartition
 		foreach ($this->_flatmates as $flatmate) {
 
 			if ($flatmate['averageGap'] > 0) {
-
 				$creditors[] = $flatmate;
 			}
 		}
 
 		usort($creditors, function($a, $b) {
-
 			return $b['averageGap'] - $a['averageGap'];
 		});
 
@@ -269,7 +268,6 @@ class Repartition
 		$globalDebt = 0;
 
 		foreach ($this->_flatmates as $flatmate) {
-
 			$globalDebt += $flatmate['expenses'];
 		}
 
@@ -284,7 +282,6 @@ class Repartition
 	private function getAverageGap() {
 
 		foreach ($this->_flatmates as $key => $flatmate) {
-
 			$this->_flatmates[$key]['averageGap'] = $flatmate['expenses'] - $this->_averageDebt;;
 		}
 	}
