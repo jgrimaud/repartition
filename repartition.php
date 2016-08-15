@@ -1,5 +1,4 @@
 <?php
-//TEST GIT - TEST GIT
 /**
  * Class Repartition
  *
